@@ -1,0 +1,78 @@
+<header class="rift-header" [class.rift-header--scrolled]="scrolled()">
+  <div class="rift-header__aura"></div>
+
+  <div class="rift-header__inner">
+    <a class="brand" href="/" aria-label="Ir al inicio">
+      <span class="brand__crest" aria-hidden="true">
+        <span></span>
+      </span>
+      <span class="brand__copy">
+        <strong>RiftForge</strong>
+        <small>League Intelligence</small>
+      </span>
+    </a>
+
+    <nav class="main-nav" aria-label="Navegacion principal">
+      @for (link of links; track link.label) {
+        <a class="main-nav__link" [class.is-active]="link.active" href="#">
+          <span>{{ link.label }}</span>
+          @if (link.badge) {
+            <em>{{ link.badge }}</em>
+          }
+        </a>
+      }
+    </nav>
+
+    <div class="header-tools">
+      <div class="region-select" [class.is-open]="regionOpen()">
+        <button type="button" class="region-select__button" (click)="toggleRegion()">
+          <span>{{ region() }}</span>
+          <small>Region</small>
+        </button>
+        <div class="region-select__menu">
+          @for (item of regions; track item.code) {
+            <button type="button" (click)="selectRegion(item.code)">
+              <span>{{ item.code }}</span>
+              <small>{{ item.ping }} ms</small>
+            </button>
+          }
+        </div>
+      </div>
+
+      <label class="summoner-search" [class.is-focused]="searchFocus()">
+        <span class="summoner-search__icon" aria-hidden="true"></span>
+        <input
+          type="search"
+          placeholder="Buscar invocador#TAG"
+          (focus)="searchFocus.set(true)"
+          (blur)="searchFocus.set(false)"
+        />
+      </label>
+
+      <div class="api-pill" aria-label="Estado de la API">
+        <span></span>
+        API Online
+      </div>
+
+      <button
+        type="button"
+        class="menu-toggle"
+        [class.is-open]="mobileOpen()"
+        (click)="toggleMobile()"
+        aria-label="Abrir menu"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <aside class="mobile-drawer" [class.is-open]="mobileOpen()">
+    <a class="mobile-drawer__item is-active" href="#">Home</a>
+    <a class="mobile-drawer__item" href="#">Campeones</a>
+    <a class="mobile-drawer__item" href="#">Builds</a>
+    <a class="mobile-drawer__item" href="#">Tier List</a>
+    <a class="mobile-drawer__item" href="/contact">Contacto</a>
+  </aside>
+</header>
