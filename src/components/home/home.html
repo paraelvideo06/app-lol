@@ -78,45 +78,18 @@
     </div>
 
     <div class="champion-grid">
-      <article class="champion-card champion-card--large">
-        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Yone_0.jpg" alt="Yone splash art" />
-        <div class="champion-card__overlay">
-          <span>Mid / Top</span>
-          <h3>Yone</h3>
-          <div class="stat-line">
-            <b>Tier S+</b>
-            <b>51.8% WR</b>
-            <b>18.2% Pick</b>
+
+      @for(character of characters; track character.id) {
+        <article class="champion-card champion-card--large">
+          <img src="{{ character.thumbnailUrl }}" alt="{{ character.name }} splash art" />
+          <div class="champion-card__overlay">
+            <span>{{ character.roles?.join(' / ') }}</span>
+            <h3>{{ character.name }}</h3>
+            <p>{{ character.title }}</p>
           </div>
-        </div>
-      </article>
+        </article>
+      }
 
-      <article class="champion-card">
-        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kaisa_0.jpg" alt="Kai'Sa splash art" />
-        <div class="champion-card__overlay">
-          <span>ADC</span>
-          <h3>Kai'Sa</h3>
-          <div class="stat-line"><b>S</b><b>50.9%</b><b>22.1%</b></div>
-        </div>
-      </article>
-
-      <article class="champion-card">
-        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Thresh_0.jpg" alt="Thresh splash art" />
-        <div class="champion-card__overlay">
-          <span>Support</span>
-          <h3>Thresh</h3>
-          <div class="stat-line"><b>A+</b><b>50.2%</b><b>12.8%</b></div>
-        </div>
-      </article>
-
-      <article class="champion-card">
-        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Kindred_0.jpg" alt="Kindred splash art" />
-        <div class="champion-card__overlay">
-          <span>Jungle</span>
-          <h3>Kindred</h3>
-          <div class="stat-line"><b>S</b><b>52.1%</b><b>8.4%</b></div>
-        </div>
-      </article>
     </div>
   </section>
 

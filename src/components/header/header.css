@@ -51,54 +51,43 @@
   min-width: max-content;
 }
 
-.brand__crest {
-  position: relative;
-  width: 48px;
-  height: 48px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, rgba(200, 170, 110, 0.2), rgba(11, 198, 227, 0.08));
-  border: 1px solid rgba(200, 170, 110, 0.45);
-  clip-path: polygon(50% 0, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
-  box-shadow: 0 0 34px rgba(200, 170, 110, 0.22), inset 0 0 22px rgba(11, 198, 227, 0.1);
+/* ── Official League of Legends wordmark ── */
+.brand__logo {
+  display: block;
+  height: 54px;
+  width: auto;
+  filter: drop-shadow(0 0 16px rgba(200, 170, 110, 0.28));
+  transition: filter 240ms ease, transform 240ms ease;
 }
 
-.brand__crest::before,
-.brand__crest::after {
-  content: "";
-  position: absolute;
-  inset: 7px;
-  border: 1px solid rgba(11, 198, 227, 0.38);
-  clip-path: inherit;
-  animation: crestPulse 3.6s ease-in-out infinite;
+.brand:hover .brand__logo {
+  filter: drop-shadow(0 0 24px rgba(200, 170, 110, 0.55));
+  transform: translateY(-1px);
 }
 
-.brand__crest::after {
-  inset: 15px;
-  background: linear-gradient(135deg, #f0e6d2, #c8aa6e 48%, #0bc6e3);
-  border: 0;
-  box-shadow: 0 0 18px rgba(200, 170, 110, 0.8);
+.brand__logo text {
+  font-family: "Cinzel", var(--font-display, serif);
+  font-weight: 700;
+  fill: url(#lolGoldHeader);
 }
 
-.brand__copy {
-  display: grid;
-  line-height: 1;
+.brand__logo-line1 {
+  font-size: 30px;
+  letter-spacing: 2px;
 }
 
-.brand__copy strong {
-  font-family: var(--font-display, serif);
-  color: #f0e6d2;
-  font-size: 20px;
-  letter-spacing: 1.2px;
+.brand__logo-line2 {
+  font-size: 30px;
+  letter-spacing: 10px;
 }
 
-.brand__copy small {
-  margin-top: 6px;
-  color: #0bc6e3;
-  font-family: var(--font-tech, monospace);
-  font-size: 10px;
-  letter-spacing: 2.2px;
-  text-transform: uppercase;
+.brand__logo-rule {
+  stroke: url(#lolGoldHeader);
+  stroke-width: 2.4;
+}
+
+.brand__logo-diamond {
+  fill: url(#lolGoldHeader);
 }
 
 .main-nav {
@@ -336,13 +325,6 @@
   display: none;
 }
 
-@keyframes crestPulse {
-  50% {
-    opacity: 0.45;
-    transform: scale(1.08);
-  }
-}
-
 @media (max-width: 1180px) {
   .main-nav {
     display: none;
@@ -406,16 +388,10 @@
     gap: 12px;
   }
 
-  .brand__crest {
-    width: 42px;
+  .brand__logo {
     height: 42px;
   }
 
-  .brand__copy strong {
-    font-size: 17px;
-  }
-
-  .brand__copy small,
   .api-pill,
   .region-select {
     display: none;

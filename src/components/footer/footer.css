@@ -43,20 +43,38 @@
   gap: 38px;
 }
 
-.footer-brand__mark {
-  width: 54px;
-  height: 54px;
+/* ── Official League of Legends wordmark ── */
+.footer-brand__logo {
+  display: block;
+  height: 66px;
+  width: auto;
   margin-bottom: 18px;
-  clip-path: polygon(50% 0, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
-  background: linear-gradient(135deg, #f0e6d2, #c8aa6e 45%, #0bc6e3);
-  box-shadow: 0 0 38px rgba(200, 170, 110, 0.35);
+  filter: drop-shadow(0 0 22px rgba(200, 170, 110, 0.32));
 }
 
-.footer-brand h2 {
-  color: #f0e6d2;
-  font-family: var(--font-display, serif);
-  font-size: 34px;
-  letter-spacing: 1px;
+.footer-brand__logo text {
+  font-family: "Cinzel", var(--font-display, serif);
+  font-weight: 700;
+  fill: url(#lolGoldFooter);
+}
+
+.footer-brand__logo .l1 {
+  font-size: 30px;
+  letter-spacing: 2px;
+}
+
+.footer-brand__logo .l2 {
+  font-size: 30px;
+  letter-spacing: 10px;
+}
+
+.footer-brand__logo .rule {
+  stroke: url(#lolGoldFooter);
+  stroke-width: 2.4;
+}
+
+.footer-brand__logo .diamond {
+  fill: url(#lolGoldFooter);
 }
 
 .footer-brand p {

@@ -284,9 +284,14 @@
 .section-heading {
   margin-bottom: 24px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  gap: 24px;
+  gap: 12px 24px;
   align-items: end;
+}
+
+.section-heading > div {
+  min-width: 0;
 }
 
 .section-heading h2,
@@ -303,62 +308,141 @@
   letter-spacing: 1.5px;
 }
 
+/* ===== Champion roster — Hextech tiles ===== */
 .champion-grid {
   display: grid;
-  grid-template-columns: 1.35fr 1fr 1fr;
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(178px, 1fr));
+  gap: 18px;
 }
 
 .champion-card {
   position: relative;
-  min-height: 320px;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
-  border: 1px solid rgba(200, 170, 110, 0.2);
-  border-radius: 16px;
-  background: #090d16;
-  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.42);
+  isolation: isolate;
+  cursor: pointer;
+  border: 1px solid rgba(200, 170, 110, 0.22);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #0c111b, #05070d);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition:
+    transform 380ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 380ms ease,
+    box-shadow 380ms ease;
 }
 
+/* every card is uniform now (all share --large) */
 .champion-card--large {
-  grid-row: span 2;
-  min-height: 656px;
+  grid-row: auto;
 }
 
 .champion-card img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
+  transform: scale(1.02);
+  filter: saturate(1.05) contrast(1.03);
+  transition:
+    transform 600ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 600ms ease;
+  z-index: 0;
+}
+
+/* permanent legibility gradient + hextech tint */
+.champion-card::before {
+  content: "";
   position: absolute;
   inset: 0;
-  transform: scale(1.04);
-  transition: transform 500ms ease, filter 500ms ease;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 50% 16%, rgba(11, 198, 227, 0.14), transparent 55%),
+    linear-gradient(0deg, rgba(1, 3, 8, 0.97) 4%, rgba(1, 3, 8, 0.45) 40%, transparent 70%);
+}
+
+/* gold/blue sweep line on top, revealed on hover */
+.champion-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 3;
+  background: linear-gradient(90deg, transparent, #c8aa6e, #0bc6e3, transparent);
+  box-shadow: 0 0 12px rgba(200, 170, 110, 0.6);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.champion-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(200, 170, 110, 0.7);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.6),
+    0 0 42px rgba(200, 170, 110, 0.28);
 }
 
 .champion-card:hover img {
   transform: scale(1.12);
-  filter: saturate(1.18);
+  filter: saturate(1.25) contrast(1.06);
+}
+
+.champion-card:hover::after {
+  transform: scaleX(1);
 }
 
 .champion-card__overlay {
   position: absolute;
   inset: auto 0 0;
-  padding: 28px;
-  background: linear-gradient(0deg, rgba(1, 3, 8, 0.96), rgba(1, 3, 8, 0.56), transparent);
+  z-index: 2;
+  padding: 16px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .champion-card__overlay span {
-  color: #0bc6e3;
-  font-weight: 900;
+  align-self: flex-start;
+  margin-bottom: 7px;
+  padding: 3px 9px;
+  color: #cdfafa;
+  font-family: var(--font-tech, monospace);
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1.4px;
-  font-size: 12px;
+  font-size: 10px;
+  border: 1px solid rgba(11, 198, 227, 0.35);
+  border-radius: 999px;
+  background: rgba(11, 198, 227, 0.1);
+}
+
+/* hide the role chip while the API returns roles: null */
+.champion-card__overlay span:empty {
+  display: none;
 }
 
 .champion-card h3 {
-  margin-top: 5px;
   color: #f0e6d2;
   font-family: var(--font-display, serif);
-  font-size: 34px;
+  font-size: clamp(18px, 1.5vw, 23px);
+  line-height: 1.04;
+  letter-spacing: 0.4px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
+}
+
+.champion-card__overlay p {
+  margin-top: 3px;
+  color: #c9b78d;
+  font-size: 11.5px;
+  line-height: 1.35;
+  letter-spacing: 0.2px;
+  opacity: 0.9;
 }
 
 .stat-line {
@@ -550,15 +634,6 @@
     transform: none;
   }
 
-  .champion-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .champion-card--large {
-    grid-column: 1 / -1;
-    min-height: 480px;
-  }
-
   .features {
     grid-template-columns: 1fr 1fr;
   }
@@ -578,15 +653,14 @@
   }
 
   .hero__metrics,
-  .champion-grid,
   .teams,
   .features {
     grid-template-columns: 1fr;
   }
 
-  .champion-card,
-  .champion-card--large {
-    min-height: 390px;
+  .champion-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
   .section-heading {
