@@ -158,7 +158,6 @@
 }
 
 .region-select__button,
-.api-pill,
 .summoner-search {
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: linear-gradient(180deg, rgba(16, 22, 34, 0.88), rgba(8, 11, 19, 0.88));
@@ -270,28 +269,6 @@
   color: rgba(201, 205, 216, 0.48);
 }
 
-.api-pill {
-  height: 44px;
-  padding: 0 14px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  color: #cdfafa;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.api-pill span {
-  width: 8px;
-  height: 8px;
-  background: #00ff88;
-  border-radius: 50%;
-  box-shadow: 0 0 16px rgba(0, 255, 136, 0.9);
-}
-
 .menu-toggle {
   display: none;
   width: 44px;
@@ -392,7 +369,6 @@
     height: 42px;
   }
 
-  .api-pill,
   .region-select {
     display: none;
   }

@@ -1,0 +1,66 @@
+@if (character) {
+  <section class="champion-detail">
+    <div class="champion-backdrop"></div>
+
+    <article class="champion-card">
+      <div class="champion-portrait">
+        <div class="champion-portrait__frame">
+          <img [src]="character.thumbnailUrl" [alt]="character.name" />
+        </div>
+        <span class="champion-portrait__id">N.º {{ character.championId }}</span>
+      </div>
+
+      <div class="champion-info">
+        <p class="champion-eyebrow">Campeón de la Grieta</p>
+        <h1 class="champion-name">{{ character.name }}</h1>
+        <p class="champion-title">{{ character.title }}</p>
+
+        <div class="champion-divider">
+          <span class="champion-divider__diamond"></span>
+        </div>
+
+        <div class="champion-roles">
+          @if (character.roles && character.roles.length) {
+            @for (role of character.roles; track role) {
+              <span class="role-chip">{{ role }}</span>
+            }
+          } @else {
+            <span class="role-chip role-chip--empty">Sin rol asignado</span>
+          }
+        </div>
+
+        <dl class="champion-attributes">
+          <div class="attribute">
+            <dt>Identificador</dt>
+            <dd>{{ character.id }}</dd>
+          </div>
+          <div class="attribute">
+            <dt>Champion ID</dt>
+            <dd>{{ character.championId }}</dd>
+          </div>
+          <div class="attribute">
+            <dt>Nombre</dt>
+            <dd>{{ character.name }}</dd>
+          </div>
+          <div class="attribute">
+            <dt>Título</dt>
+            <dd>{{ character.title }}</dd>
+          </div>
+          <div class="attribute">
+            <dt>Roles</dt>
+            <dd>{{ character.roles?.length ? character.roles?.join(', ') : 'No definidos' }}</dd>
+          </div>
+          <div class="attribute attribute--wide">
+            <dt>Miniatura</dt>
+            <dd class="attribute__link">{{ character.thumbnailUrl }}</dd>
+          </div>
+        </dl>
+      </div>
+    </article>
+  </section>
+} @else {
+  <div class="champion-loading">
+    <span class="champion-loading__spinner"></span>
+    Invocando al campeón…
+  </div>
+}

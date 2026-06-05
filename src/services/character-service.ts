@@ -17,4 +17,11 @@ export class CharacterService {
   public getCharacters(): Observable<Character[]>{
     return this._http.get<Character[]>(this._baseUrl + "/characters");
   }
+  public getCharacterById(id: string): Observable<Character>{
+    //localhost:8080/api/characters/6a0494ntgmjre40
+    return this._http.get<Character>(this._baseUrl + "/characters" + "/" + id);
+  }
+  public getMultirolCharacters(): Observable<Character[]>{
+    return this._http.get<Character[]>(this._baseUrl + "/characters/multirol");
+  }
 }

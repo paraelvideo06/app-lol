@@ -1,0 +1,288 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  color: #f6f7fb;
+  background:
+    radial-gradient(circle at 14% 6%, rgba(11, 198, 227, 0.14), transparent 30%),
+    radial-gradient(circle at 86% 4%, rgba(200, 170, 110, 0.13), transparent 32%),
+    linear-gradient(180deg, #05070d 0%, #070b14 50%, #030407 100%);
+}
+
+.multirol-page {
+  width: min(1480px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 86px 0 100px;
+}
+
+/* ---------- Hero ---------- */
+.multirol-hero {
+  max-width: 760px;
+  margin-bottom: 48px;
+}
+
+.multirol-hero__kicker {
+  color: #c8aa6e;
+  font-family: var(--font-tech, monospace);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+}
+
+.multirol-hero__title {
+  margin-top: 14px;
+  font-family: var(--font-display, serif);
+  font-size: clamp(40px, 7vw, 84px);
+  line-height: 0.95;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.multirol-hero__title span {
+  background: linear-gradient(135deg, #0bc6e3, #0ac8b9 55%, #c8aa6e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.multirol-hero__lead {
+  max-width: 640px;
+  margin-top: 22px;
+  color: #c9cdd8;
+  font-size: clamp(15px, 2vw, 18px);
+  line-height: 1.75;
+}
+
+/* ---------- Counter ---------- */
+.multirol-count {
+  margin-bottom: 20px;
+  color: #8a8f9d;
+  font-family: var(--font-tech, monospace);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.multirol-count::before {
+  content: "";
+  display: inline-block;
+  width: 26px;
+  height: 1px;
+  margin-right: 12px;
+  vertical-align: middle;
+  background: linear-gradient(90deg, #c8aa6e, transparent);
+}
+
+/* ---------- Grid ---------- */
+.multirol-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* ---------- Card ---------- */
+.multirol-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(200, 170, 110, 0.22);
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(16, 23, 36, 0.72), rgba(6, 9, 16, 0.78));
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition:
+    transform 380ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 380ms ease,
+    box-shadow 380ms ease;
+  /* Entrada: solo opacidad/desenfoque para no pisar el transform del hover */
+  animation: multirol-in 0.6s var(--ease-out-expo, ease) both;
+}
+
+.multirol-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #c8aa6e, #0bc6e3, transparent);
+  box-shadow: 0 0 12px rgba(200, 170, 110, 0.6);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 480ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.multirol-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(200, 170, 110, 0.65);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.6),
+    0 0 42px rgba(200, 170, 110, 0.26);
+}
+
+.multirol-card:hover::after {
+  transform: scaleX(1);
+}
+
+/* ---------- Portrait ---------- */
+.multirol-card__portrait {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.multirol-card__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition:
+    transform 600ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 600ms ease;
+}
+
+.multirol-card:hover .multirol-card__portrait img {
+  transform: scale(1.1);
+  filter: saturate(1.2) contrast(1.04);
+}
+
+.multirol-card__portrait::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(6, 9, 16, 0.96) 2%, transparent 46%);
+}
+
+.multirol-card__count {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 5px 10px;
+  font-family: var(--font-tech, monospace);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #0a0d16;
+  background: linear-gradient(135deg, #f0e6d2, #c8aa6e);
+  border-radius: 999px;
+  box-shadow: 0 0 16px rgba(200, 170, 110, 0.4);
+}
+
+/* ---------- Body ---------- */
+.multirol-card__body {
+  position: relative;
+  z-index: 1;
+  margin-top: -34px;
+  padding: 16px 18px 20px;
+}
+
+.multirol-card__name {
+  font-family: var(--font-display, serif);
+  font-size: 22px;
+  letter-spacing: 0.4px;
+  color: #f0e6d2;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.7);
+}
+
+.multirol-card__title {
+  margin-top: 4px;
+  color: #c9b78d;
+  font-size: 13px;
+  font-style: italic;
+}
+
+.multirol-card__roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 14px;
+  padding: 0;
+  list-style: none;
+}
+
+.role-chip {
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #cdfafa;
+  border: 1px solid rgba(11, 198, 227, 0.35);
+  border-radius: 999px;
+  background: rgba(11, 198, 227, 0.1);
+}
+
+/* ---------- Empty / loading ---------- */
+.multirol-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 100px 0;
+  color: #8a8f9d;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.multirol-empty__spinner {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(200, 170, 110, 0.25);
+  border-top-color: #c8aa6e;
+  border-radius: 50%;
+  animation: multirol-spin 0.9s linear infinite;
+}
+
+/* ---------- Animations ---------- */
+@keyframes multirol-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes multirol-in {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.multirol-card:nth-child(1) { animation-delay: 0.03s; }
+.multirol-card:nth-child(2) { animation-delay: 0.07s; }
+.multirol-card:nth-child(3) { animation-delay: 0.11s; }
+.multirol-card:nth-child(4) { animation-delay: 0.15s; }
+.multirol-card:nth-child(5) { animation-delay: 0.19s; }
+.multirol-card:nth-child(6) { animation-delay: 0.23s; }
+.multirol-card:nth-child(n + 7) { animation-delay: 0.27s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .multirol-card {
+    animation: none;
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  .multirol-page {
+    width: min(100% - 28px, 1480px);
+    padding-top: 58px;
+  }
+
+  .multirol-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 14px;
+  }
+
+  .multirol-card__name {
+    font-size: 19px;
+  }
+}

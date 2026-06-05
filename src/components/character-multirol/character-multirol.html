@@ -1,0 +1,45 @@
+<main class="multirol-page">
+  <header class="multirol-hero">
+    <p class="multirol-hero__kicker">Roster flexible · La Grieta</p>
+    <h1 class="multirol-hero__title">Campeones <span>multi-rol</span></h1>
+    <p class="multirol-hero__lead">
+      Estos campeones se pueden jugar en más de una posición. Versatilidad que
+      desbloquea flex picks y mantiene al rival adivinando durante el draft.
+    </p>
+  </header>
+
+  @if (characters && characters.length) {
+    <p class="multirol-count">{{ characters.length }} campeones encontrados</p>
+
+    <section class="multirol-grid">
+      @for (character of characters; track character.id) {
+        <article class="multirol-card">
+          <div class="multirol-card__portrait">
+            <img [src]="character.thumbnailUrl" [alt]="character.name" />
+            @if (character.roles) {
+              <span class="multirol-card__count">{{ character.roles.length }} roles</span>
+            }
+          </div>
+
+          <div class="multirol-card__body">
+            <h2 class="multirol-card__name">{{ character.name }}</h2>
+            <p class="multirol-card__title">{{ character.title }}</p>
+
+            @if (character.roles) {
+              <ul class="multirol-card__roles">
+                @for (role of character.roles; track role) {
+                  <li class="role-chip">{{ role }}</li>
+                }
+              </ul>
+            }
+          </div>
+        </article>
+      }
+    </section>
+  } @else {
+    <div class="multirol-empty">
+      <span class="multirol-empty__spinner"></span>
+      <p>Cargando campeones multi-rol…</p>
+    </div>
+  }
+</main>

@@ -45,19 +45,22 @@
     </nav>
 
     <section class="footer-status">
-      <h3>Servicios</h3>
-      <div>
-        <span>Riot API</span>
-        <b>Online</b>
-      </div>
-      <div>
-        <span>EUW Cache</span>
-        <b>42 ms</b>
-      </div>
-      <div>
-        <span>Champion CDN</span>
-        <b>Stable</b>
-      </div>
+      <h3>Newsletter</h3>
+      <p class="footer-status__lead">El resumen de cada parche y los cambios del meta, directo a tu correo.</p>
+      @if (subscribed()) {
+        <p class="footer-status__done">¡Hecho! Revisa tu bandeja de entrada.</p>
+      } @else {
+        <form class="newsletter" (submit)="$event.preventDefault(); subscribe()">
+          <input
+            type="email"
+            placeholder="tu@email.com"
+            aria-label="Correo electrónico"
+            [value]="newsletter()"
+            (input)="updateEmail($event)"
+          />
+          <button type="submit">Unirme</button>
+        </form>
+      }
     </section>
   </div>
 

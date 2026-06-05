@@ -10,60 +10,57 @@
         Analiza campeones, builds, matchups y rendimiento como si tuvieras un war room de esports
         en el cliente de League of Legends.
       </p>
+      <button class="btn btn--primary" aria-label="multirol"><a href="/multirol">Ver multirol</a></button>
 
       <div class="hero__actions">
         <a class="btn btn--gold" href="#">Explorar campeones</a>
         <a class="btn btn--blue" href="/contact">Contactar equipo</a>
       </div>
 
-      <div class="hero__metrics" aria-label="Metricas destacadas">
+      <div class="hero__metrics" aria-label="Cifras del juego">
         <article>
-          <strong>58.7%</strong>
-          <span>Winrate top pick</span>
+          <strong>168</strong>
+          <span>Campeones jugables</span>
         </article>
         <article>
-          <strong>12M</strong>
-          <span>Partidas indexadas</span>
+          <strong>5</strong>
+          <span>Líneas y roles</span>
         </article>
         <article>
-          <strong>0.42s</strong>
-          <span>Live scout</span>
+          <strong>11</strong>
+          <span>Regiones competitivas</span>
         </article>
       </div>
     </div>
 
     <aside class="hero-card">
       <div class="hero-card__top">
-        <span>Live Draft</span>
-        <strong>Blue Side</strong>
+        <span>Tier list</span>
+        <strong>Parche 16.10</strong>
       </div>
       <div class="draft-row draft-row--active">
         <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Ahri.png" alt="Ahri" />
         <div>
           <strong>Ahri</strong>
-          <span>Mid // S+ // 52.4%</span>
+          <span>Mid · 52.4% winrate</span>
         </div>
-        <em>LOCK</em>
+        <em>S+</em>
       </div>
       <div class="draft-row">
         <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/LeeSin.png" alt="Lee Sin" />
         <div>
           <strong>Lee Sin</strong>
-          <span>Jungle // A // 49.8%</span>
+          <span>Jungla · 49.8% winrate</span>
         </div>
-        <em>PICK</em>
+        <em>A</em>
       </div>
       <div class="draft-row">
         <img src="https://ddragon.leagueoflegends.com/cdn/14.24.1/img/champion/Jinx.png" alt="Jinx" />
         <div>
           <strong>Jinx</strong>
-          <span>ADC // S // 51.9%</span>
+          <span>ADC · 51.9% winrate</span>
         </div>
-        <em>PICK</em>
-      </div>
-      <div class="threat-meter">
-        <span>Enemy threat</span>
-        <div><i></i></div>
+        <em>S</em>
       </div>
     </aside>
   </section>
@@ -84,64 +81,13 @@
           <img src="{{ character.thumbnailUrl }}" alt="{{ character.name }} splash art" />
           <div class="champion-card__overlay">
             <span>{{ character.roles?.join(' / ') }}</span>
-            <h3>{{ character.name }}</h3>
+            <h3><a href="character/{{ character.id }}">{{ character.name }}</a></h3>
             <p>{{ character.title }}</p>
           </div>
         </article>
       }
 
     </div>
-  </section>
-
-  <section class="intel-layout">
-    <article class="panel live-panel">
-      <div class="panel__header">
-        <span class="live-dot"></span>
-        <div>
-          <p class="section-kicker">Live match</p>
-          <h2>Partida encontrada</h2>
-        </div>
-      </div>
-
-      <div class="teams">
-        <div class="team">
-          <h3>Tu equipo</h3>
-          <p>Ahri // Lee Sin // Jinx // Thresh // Ornn</p>
-        </div>
-        <div class="versus">VS</div>
-        <div class="team">
-          <h3>Rival</h3>
-          <p>Syndra // Viego // Ezreal // Rakan // K'Sante</p>
-        </div>
-      </div>
-
-      <div class="match-insight">
-        <strong>Ventaja detectada</strong>
-        <span>Bot lane tiene +7.6% de presion en early si Thresh juega ignite.</span>
-      </div>
-    </article>
-
-    <article class="panel analytics-panel">
-      <p class="section-kicker">Performance</p>
-      <h2>Dashboard competitivo</h2>
-      <div class="bars">
-        <div style="--value: 82%">
-          <span>KDA consistency</span>
-          <i></i>
-          <b>82</b>
-        </div>
-        <div style="--value: 67%">
-          <span>Vision score</span>
-          <i></i>
-          <b>67</b>
-        </div>
-        <div style="--value: 91%">
-          <span>Objective control</span>
-          <i></i>
-          <b>91</b>
-        </div>
-      </div>
-    </article>
   </section>
 
   <section class="features">

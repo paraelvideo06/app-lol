@@ -222,6 +222,8 @@ textarea:focus {
   border: 0;
   border-radius: 6px;
   color: #080b12;
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(135deg, #f0e6d2, #c8aa6e 48%, #785a28);
   box-shadow: 0 0 34px rgba(200, 170, 110, 0.32);
   font-weight: 950;
@@ -297,7 +299,7 @@ textarea:focus {
 }
 
 .status-board {
-  border-color: rgba(0, 255, 136, 0.18);
+  border-color: rgba(200, 170, 110, 0.22);
 }
 
 .status-board h3 {
@@ -314,9 +316,9 @@ textarea:focus {
 }
 
 .status-board b {
-  color: #00ff88;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
+  color: #c8aa6e;
+  font-weight: 700;
+  letter-spacing: 0.2px;
 }
 
 @keyframes rotateAura {
@@ -355,5 +357,64 @@ textarea:focus {
   .side-panel,
   .status-board {
     padding: 20px;
+  }
+}
+
+/* ── Pulido: select Hextech, brillo del boton y entrada cinematografica ── */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 42px;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #c8aa6e 50%),
+    linear-gradient(135deg, #c8aa6e 50%, transparent 50%);
+  background-position: calc(100% - 21px) 23px, calc(100% - 15px) 23px;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+}
+
+select option {
+  background: #0a0d16;
+  color: #f6f7fb;
+}
+
+label:focus-within span {
+  color: #0bc6e3;
+}
+
+.contact-form button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-130%) skewX(-18deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transition: transform 650ms ease;
+}
+
+.contact-form button:hover::after {
+  transform: translateX(130%) skewX(-18deg);
+}
+
+.contact-hero__copy,
+.signal-card,
+.contact-form,
+.contact-side > * {
+  animation: rise-in 0.85s var(--ease-out-expo, ease) both;
+}
+
+.signal-card { animation-delay: 0.08s; }
+.contact-form { animation-delay: 0.04s; }
+.contact-side > *:nth-child(1) { animation-delay: 0.12s; }
+.contact-side > *:nth-child(2) { animation-delay: 0.18s; }
+.contact-side > *:nth-child(3) { animation-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-hero__copy,
+  .signal-card,
+  .contact-form,
+  .contact-side > *,
+  .signal-card::after {
+    animation: none;
   }
 }
