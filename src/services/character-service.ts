@@ -22,6 +22,6 @@ export class CharacterService {
     return this._http.get<Character>(this._baseUrl + "/characters" + "/" + id);
   }
   public getMultirolCharacters(): Observable<Character[]>{
-    return this._http.get<Character[]>(this._baseUrl + "/characters/multirol");
+    return this._http.get<Character[]>(this._baseUrl + "/characters/filter/multirol");
   }
 }

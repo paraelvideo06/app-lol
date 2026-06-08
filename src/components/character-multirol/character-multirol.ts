@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from '../../model/character';
 import { CharacterService } from '../../services/character-service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-character-multirol',
@@ -11,16 +10,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CharacterMultirol implements OnInit {
 
-  public id: string = "";
-  public character?: Character;
-  constructor(private _route: ActivatedRoute, private _characterService: CharacterService) {}
+  public characters: Character[] = [];
+
+  constructor(private _characterService: CharacterService) {}
 
   ngOnInit(): void {
-    this._route.params.subscribe((params) => {
-      this.id = params['id'];
-      this._characterService.getCharacterById(this.id).subscribe((character) => {
-        this.character = character;
-      });
+    this._characterService.getMultirolCharacters().subscribe((result) => {
+      this.characters = result;
     });
   }
 }

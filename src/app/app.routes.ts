@@ -8,5 +8,5 @@ export const routes: Routes = [
     {path: "contact", component: Contact},
     {path: "", component: Home},
     {path: "character/:id", component: CharacterDetail},
-    {path: "multirol", component: CharacterMultirol}
+    {path: "filter/multirol", component: CharacterMultirol}
 ];
