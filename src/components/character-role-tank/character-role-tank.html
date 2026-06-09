@@ -1,0 +1,43 @@
+<main class="roletank-page">
+  <header class="roletank-hero">
+    <p class="roletank-hero__kicker">Filtro por rol · La Grieta</p>
+    <h1 class="roletank-hero__title">Campeones <span>Tanque</span></h1>
+    <p class="roletank-hero__lead">
+      Los muros del equipo: inician las peleas, absorben el daño y protegen a
+      sus aliados. Estos son los campeones que pueden jugar como tanque.
+    </p>
+  </header>
+
+  @if (characters && characters.length) {
+    <p class="roletank-count">{{ characters.length }} campeones encontrados</p>
+
+    <section class="roletank-grid">
+      @for (character of characters; track character.id) {
+        <article class="roletank-card">
+          <div class="roletank-card__portrait">
+            <img [src]="character.thumbnailUrl" [alt]="character.name" />
+            <span class="roletank-card__badge">Tanque</span>
+          </div>
+
+          <div class="roletank-card__body">
+            <h2 class="roletank-card__name">{{ character.name }}</h2>
+            <p class="roletank-card__title">{{ character.title }}</p>
+
+            @if (character.roles) {
+              <ul class="roletank-card__roles">
+                @for (role of character.roles; track role) {
+                  <li class="role-chip">{{ role }}</li>
+                }
+              </ul>
+            }
+          </div>
+        </article>
+      }
+    </section>
+  } @else {
+    <div class="roletank-empty">
+      <span class="roletank-empty__spinner"></span>
+      <p>Cargando campeones tanque…</p>
+    </div>
+  }
+</main>
